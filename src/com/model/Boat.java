@@ -4,67 +4,92 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Boat {
-		
-	private int length;//nombre de cases
-    private Case head;//tete du boat
-    private Case end;//queue du boat
-    private Direction direction;
-    private List<Case> caseList = new ArrayList<Case>();
-
+	
+	private Direction direction;
+	private Model model;
+	private List<Case> caseList;
+	private Case caseDepart;
+	
 	/* contsructor   */
 
+public Boat(Case caseDepart, Direction direction, Model model) {
+	super();
+	this.caseDepart=caseDepart;
+	this.direction = direction;
+	this.caseList = new ArrayList<Case>();
+	this.model = model;
+	caseList.add(caseDepart);	
+}
+public Direction getDirection() {
+	return direction;
+}
+public void setDirection(Direction direction) {
+	this.direction = direction;
+}
+public Model getModel() {
+	return model;
+}
+public void setModel(Model model) {
+	this.model = model;
+}
+public List<Case> getCases() {
+	return caseList;
+}
+public void setCases(List<Case> cases) {
+	this.caseList = cases;
+}
+
+
+
+public List<Case> getCaseList() {
+	return caseList;
+}
+public void setCaseList(List<Case> caseList) {
+	this.caseList = caseList;
+}
+public Case getCaseDepart() {
+	return caseDepart;
+}
+public void setCaseDepart(Case caseDepart) {
+	this.caseDepart = caseDepart;
+}
+public void BoatSunk() {
+	boolean checked = false;
+		for(Case coordonee :this.getCases())
+		{
+			if (coordonee.getStatus().ISSUNK.equals(true))
+			{
+				System.out.println("case : "+coordonee +"est coulé");
+				checked = true;
+			}
+		}
+		
+	   if(checked==false)
+	   {
+		   System.out.println("le bateau n'est pas coulé");
+	   }else {
+		   System.out.println("le bateau n'est pas coulé");
+	   }
+	}
+@Override
+public String toString() {
+	return "Boat [direction=" + direction + ", model=" + model + ", caseList=" + caseList + "]";
+}
+
+public void afficherBateau()
+{
 	
-    public Boat(int length, Case head, Case end, Direction direction) {
-		super();
-		this.length = length;
-		this.head = head;
-		this.end = end;
-		this.direction = direction;
-	}
-
-		/* Getters and setters   */
-		
-		public Case getHead() {
-			return head;
-		}
-		
-		public void setHead(Case head) {
-			this.head = head;
-		}
-
-		public Case getEnd() {
-			return end;
-		}
-
-		public void setEnd(Case end) {
-			this.end = end;
-		}
-
-		
-	public Direction getDirection() {
-			return direction;
-		}
-
-		public void setDirection(Direction direction) {
-			this.direction = direction;
-		}
-
-	public int getLength() {
-		return length;
-	}
-	public void setLength(int length) {
-		this.length = length;
-	}
-
-	/* to string */
-	@Override
-	public String toString() {
-		return "Boat [length=" + length + ", status=" + ", position=" +  "]";
-	}
-
-	
-
-
+	for(int i=0; i<this.getCaseList().size();i++)
+	this.getCaseList().get(i).afficherCase();
+}
+//placer un bateau
 
 
 }
+	
+
+
+	
+	
+
+
